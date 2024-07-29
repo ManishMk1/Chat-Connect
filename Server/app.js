@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const cors = require('cors');
 const io=require('socket.io')(8080,{
     cors:{
-        origin:'http://localhost:5173',
+        origin:'chat-connect-theta.vercel.app',
     }
 })
 //Connect DB

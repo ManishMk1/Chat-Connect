@@ -19,7 +19,7 @@ function DashBoard() {
    messageRef?.current?.scrollIntoView({behavior:'smooth'});
   },[previousMessage.messages])
   useEffect(()=>{
-    setSocket(io('http://localhost:8080'));
+    setSocket(io('http://chat-connect-1mk3.vercel.app'));
   },[])
   useEffect(()=>{
     socket?.emit('addUser',user?.id);
@@ -50,7 +50,7 @@ function DashBoard() {
   useEffect(()=>{
     const fetchConversations=async()=>{
       const loggedInUser=JSON.parse(localStorage.getItem('user:detail'));
-      const res=await fetch(`http://localhost:8000/api/conversation/${loggedInUser.id}`,{
+      const res=await fetch(`http://chat-connect-1mk3.vercel.app/api/conversation/${loggedInUser.id}`,{
         method:"GET",
         headers:{
           'Content-Type':'application/json',
@@ -64,7 +64,7 @@ function DashBoard() {
   },[])
   useEffect(()=>{
     const fetAllUsers=async()=>{
-      const res=await fetch(`http://localhost:8000/api/users/${user?.id}`,{
+      const res=await fetch(`http://chat-connect-1mk3.vercel.app/api/users/${user?.id}`,{
         method:"GET",
         headers:{
           'Content-Type':'application/json',
@@ -77,7 +77,7 @@ function DashBoard() {
     fetAllUsers();
   },[])
   const fetchMessages=async(conversationId,receiver)=>{
-    const res=await fetch(`http://localhost:8000/api/message/${conversationId}?senderId=${user?.id}&&receiverId=${receiver?.receiverId}`,{
+    const res=await fetch(`http://chat-connect-1mk3.vercel.app/api/message/${conversationId}?senderId=${user?.id}&&receiverId=${receiver?.receiverId}`,{
       method:"GET",
       // ...(conversationId==='new'&& {
       //   body:JSON.stringify({senderId:user?.id,receiverId:previousMessage?.receiver?.receiverId})}),
@@ -97,7 +97,7 @@ function DashBoard() {
       message,
       receiverId:previousMessage?.receiver?.receiverId
     })
-    const res=await fetch(`http://localhost:8000/api/message`,{
+    const res=await fetch(`http://chat-connect-1mk3.vercel.app/api/message`,{
       method:'POST',
       headers:{
         'Content-Type':'application/json',
